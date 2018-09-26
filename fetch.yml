@@ -5,5 +5,6 @@
    - name: test fetch
      fetch: 
       src: C:/Ansible/test.txt
-      dest: /srv/test
+      dest: /srv
+      flat: yes
   
