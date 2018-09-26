@@ -1,4 +1,9 @@
 ﻿---
 - name: Test fetch
   hosts: "{{ seznam_stanic }}"
+  tasks: 
+   - name: test fetch
+     fetch: 
+      src: C:\Ansible\test.txt
+      dest: /root/test.txt
   
