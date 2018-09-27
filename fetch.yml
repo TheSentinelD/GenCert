@@ -11,4 +11,5 @@
       src: 'C:/Ansible/test/test.txt'
       dest: '/tmp/test_{{ ansible_hostname }}'
       flat: yes
+      mode: 0774
   
