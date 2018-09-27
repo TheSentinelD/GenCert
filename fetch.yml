@@ -9,6 +9,6 @@
    - name: test fetch
      fetch: 
       src: C:/Ansible/test.txt
-      dest: /home/localadmin/test.txt
+      dest: /home/localadmin/test.txt/
       flat: yes
   
