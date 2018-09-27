@@ -8,7 +8,7 @@
       
    - name: test fetch
      fetch: 
-      src: 'C:/Ansible/test/test.txt'
+      src: 'C:/Ansible/test/'
       dest: '/tmp/test_{{ ansible_hostname }}/'
       flat: yes
   
