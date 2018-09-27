@@ -10,5 +10,4 @@
      fetch: 
       src: C:/Ansible/test.txt
       dest: /tmp/
-      flat: yes
   
