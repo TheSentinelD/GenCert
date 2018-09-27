@@ -2,6 +2,10 @@
 - name: Test fetch
   hosts: "{{ seznam_stanic }}"
   tasks: 
+   - name: check for file
+     win_stat: 
+      path: C:\Ansible\test.txt
+      
    - name: test fetch
      fetch: 
       src: C:/Ansible/test.txt
