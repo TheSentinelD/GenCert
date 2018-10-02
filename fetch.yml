@@ -11,6 +11,7 @@
       src: 'C:/Ansible/test/test.txt'
       dest: "/tmp/test_{{ ansible_hostname }}"
       flat: yes
+      fail_on_missing: yes
      vars: 
       ansible_become: yes
       ansible_become_method: runas
