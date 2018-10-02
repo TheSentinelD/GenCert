@@ -11,4 +11,9 @@
       src: 'C:/Ansible/test/test.txt'
       dest: "/tmp/test_{{ ansible_hostname }}"
       flat: yes
-  
+     vars: 
+      ansible_become: yes
+      ansible_become_method: runas
+      ansible_become_user: '{{ ucet }}'
+      ansible_become_pass: '{{ heslo }}'
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
