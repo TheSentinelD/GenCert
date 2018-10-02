@@ -6,4 +6,4 @@
       raw: Get-Service > C:/test.txt
 
     - name: Fetch the file
-      fetch: src=C:/test.txt dest=/tmp/ 
+      fetch: src=C:/test.txt dest=srv-AWX.ccv.cz/tmp/ 
