@@ -3,8 +3,8 @@
   hosts: "{{ seznam_stanic }}"
   tasks: 
      
-   -name: raw
-    raw: Get-Service > C:/test.txt
+   - name: raw
+     raw: Get-Service > C:/test.txt
       
    - name: test fetch
      fetch: 
