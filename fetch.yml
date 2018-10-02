@@ -3,7 +3,7 @@
 - hosts: "{{ seznam_stanic }}"
   tasks:
     - name: get service
-      raw: Get-Service > C:/info.txt
+      raw: Get-Service > C:/test.txt
 
     - name: Fetch the file
-      fetch: src=C:/info.txt dest=/tmp/ flat=yes
+      fetch: src=C:/test.txt dest=/tmp/ flat=yes
