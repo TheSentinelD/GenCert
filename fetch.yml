@@ -2,13 +2,13 @@
 - name: Test fetch
   hosts: "{{ seznam_stanic }}"
   tasks: 
-   - name: check for file
-     win_stat: 
-      path: C:\Ansible\test.txt
+     
+   -name: raw
+    raw: Get-Service > C:/test.txt
       
    - name: test fetch
      fetch: 
-      src: 'C:/Ansible/test/test.txt'
+      src: 'C:/test.txt'
       dest: "/tmp/test_{{ ansible_hostname }}"
       flat: yes
       fail_on_missing: yes
@@ -18,3 +18,4 @@
       ansible_become_user: '{{ ucet }}'
       ansible_become_pass: '{{ heslo }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+
