@@ -1,21 +1,9 @@
-﻿---
-- name: Test fetch
-  hosts: "{{ seznam_stanic }}"
-  tasks: 
-     
-   - name: raw
-     raw: Get-Service > C:/test.txt
-      
-   - name: test fetch
-     fetch: 
-      src: 'C:/test.txt'
-      dest: "/tmp/test_{{ ansible_hostname }}"
-      flat: yes
-      fail_on_missing: yes
-     vars: 
-      ansible_become: yes
-      ansible_become_method: runas
-      ansible_become_user: '{{ ucet }}'
-      ansible_become_pass: '{{ heslo }}'
-      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+---
 
+- hosts: "{{ seznam_stanic }}"
+  tasks:
+    - name: get service
+      raw: Get-Service > C:/info.txt
+
+    - name: Fetch the file
+      fetch: src=C:/info.txt dest=/tmp/ flat=yes
