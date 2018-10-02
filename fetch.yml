@@ -6,4 +6,4 @@
       raw: Get-Service > C:/test.txt
 
     - name: Fetch the file
-      fetch: src=C:/test.txt dest=/tmp/ flat=yes
+      fetch: src=C:/test.txt dest=/tmp/ 
