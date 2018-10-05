@@ -1,9 +1,9 @@
 ---
-
-- hosts: "{{ seznam_stanic }}"
-  tasks:
-    - name: get service
-      raw: Get-Service > C:/test.txt
-
-    - name: Fetch the file
-      fetch: src=C:/test.txt dest=srv-AWX.ccv.cz/tmp/ 
+- name: Test fetch
+  hosts: "{{ seznam_stanic }}"
+  tasks: 
+   - name: test fetch
+     fetch: 
+      src: 'C:/test.txt'
+      dest: "/tmp/test_{{ ansible_hostname }}"
+      flat: yes
