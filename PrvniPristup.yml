@@ -95,3 +95,8 @@
       src: 'C:\temp\cert.pfx'
       dest: "/srv/cert/{{ ansible_hostname }}_pfx"
       flat: yes
+      
+   - name: Odstraňování C:\temp s exportovanými certy
+     win_file:
+       path: C:\Temp
+       state: absent
