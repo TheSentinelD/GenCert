@@ -36,4 +36,25 @@
       src: 'C:\temp\cert.pfx'
       dest: "/srv/cert/{{ ansible_hostname }}_pfx"
       flat: yes
-    
+      
+   - name: Import issuing certifikátu (certifikát autority) do Trusted root certificate authorities #je stejný, jako cert samotný, protože je SelfSigned
+     win_shell: |
+       $cert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2
+       $cert.Import("cert.pem")
+       $store_name = [System.Security.Cryptography.X509Certificates.StoreName]::Root
+       $store_location = [System.Security.Cryptography.X509Certificates.StoreLocation]::LocalMachine
+       $store = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Store -ArgumentList $store_name, $store_location
+       $store.Open("MaxAllowed")
+       $store.Add($cert)
+       $store.Close()
+       
+   - name: Import certifikátu do TrustedPeople
+     win_shell: |
+       $cert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2
+       $cert.Import("cert.pem")
+       $store_name = [System.Security.Cryptography.X509Certificates.StoreName]::TrustedPeople
+       $store_location = [System.Security.Cryptography.X509Certificates.StoreLocation]::LocalMachine
+       $store = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Store -ArgumentList $store_name, $store_location
+       $store.Open("MaxAllowed")
+       $store.Add($cert)
+       $store.Close()
