@@ -12,7 +12,7 @@
       % -begin { $aa = $null } `
       -process {$aa += [char]$_} `
       -end {$aa}
-      Write-Host "$YouShallNotPass"
+      Write-Host " $YouShallNotPass"
     register: psw_out
   - name: debug
     debug: 
