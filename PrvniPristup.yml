@@ -1,6 +1,6 @@
 ---
 - name: Vytvoření stálého jedinečného přístupu do PC
-  hosts: "{{ seznam_stanic}}"
+  hosts: "{{ seznam_stanic }}"
   tasks: 
    - name: Vytvoří složku pro certifikát, pokud je potřeba
      win_file: 
