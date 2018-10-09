@@ -5,7 +5,7 @@
   - name: Vytvoří AnsibleAdmina
     win_user: 
      name: AnsibleAdmin
-     password: "{{ psw_out.stdout_lines }}"
+     password: "{{ heslo }}"
      password_never_expires: true
      user_cannot_change_password: yes
      state: present
