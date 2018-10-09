@@ -20,6 +20,10 @@
       Write-Host "$YouShallNotPass"
      register: psw_out
      
+   - name: debug
+     debug: 
+      msg: "{{ psw_out.stdout_lines }}"
+     
    - name: Vytvoří AnsibleAdmina
      win_user: 
       name: AnsibleAdmin
