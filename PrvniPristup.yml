@@ -4,7 +4,7 @@
   tasks: 
    - name: Vytvoří složku pro certifikát, pokud je potřeba
      win_file: 
-      path: 'C:\Ansible\temp'
+      path: 'C:\temp'
       state: directory
        
    - name: Generování random hesla pro AnsibleAdmina
