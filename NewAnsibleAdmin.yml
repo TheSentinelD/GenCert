@@ -10,5 +10,4 @@
      user_cannot_change_password: yes
      state: present
      groups: 
-       - Users
        - Administrators
