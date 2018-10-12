@@ -17,12 +17,12 @@
      
   - name: debug
     debug: 
-     msg: '{{ psw_out.stdout_lines }}'
+     msg: '{{ psw_out.stdout }}'
      
   - name: Vytvoří AnsibleAdmina
     win_user: 
      name: AnsibleAdmin
-     password: '{{ psw_out.stdout_lines }}'
+     password: '{{ psw_out.stdout }}'
      state: present
      groups: 
       - Administrators
