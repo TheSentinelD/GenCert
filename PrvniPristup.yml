@@ -22,12 +22,12 @@
      
    - name: debug
      debug: 
-      msg: "{{ psw_out.stdout_lines }}"
+      msg: '{{ psw_out.stdout_lines }}'
      
    - name: Vytvoří AnsibleAdmina
      win_user: 
       name: AnsibleAdmin
-      password: "{{ psw_out.stdout_lines }}"
+      password: '{{ psw_out.stdout_lines }}'
       password_never_expires: true
       user_cannot_change_password: yes
       state: present
