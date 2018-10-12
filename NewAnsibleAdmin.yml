@@ -2,12 +2,28 @@
 - name: Vytvoří AnsibleAdmina
   hosts: "{{ seznam_stanic }}"
   tasks: 
+  - name: Generování random hesla pro AnsibleAdmina
+    win_shell: |
+     $punc = 46..46
+     $digits = 48..57
+     $letters = 65..90 + 97..122
+     $YouShallNotPass = get-random -count 15 `
+     -input ($punc + $digits + $letters) |
+     % -begin { $aa = $null } `
+     -process {$aa += [char]$_} `
+     -end {$aa}
+     Write-Host "$YouShallNotPass"
+    register: psw_out
+     
+  - name: debug
+    debug: 
+     msg: '{{ psw_out.stdout_lines }}'
+     
   - name: Vytvoří AnsibleAdmina
     win_user: 
      name: AnsibleAdmin
-     password: "{{ heslo }}"
-     password_never_expires: true
-     user_cannot_change_password: yes
+     password: '{{ psw_out.stdout_lines }}'
      state: present
      groups: 
-       - Administrators
+      - Administrators
+      
