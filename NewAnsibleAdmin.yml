@@ -15,14 +15,14 @@
      Write-Host "$YouShallNotPass"
    # register: psw_out
      
-#  - name: debug
- #   debug: 
-  #   msg: '{{ psw_out.stdout }}'
+  - name: debug
+    debug: 
+     msg: '{{ heslo }}'
      
   - name: Vytvoří AnsibleAdmina
     win_user: 
      name: AnsibleAdmin
-     password: '{{ psw_out.stdout }}'
+     password: '{{ heslo }}'
      state: present
      groups: 
       - Administrators
