@@ -13,11 +13,11 @@
      -process {$aa += [char]$_} `
      -end {$aa}
      Write-Host "$YouShallNotPass"
-    register: psw_out
+   # register: psw_out
      
-  - name: debug
-    debug: 
-     msg: '{{ psw_out.stdout }}'
+#  - name: debug
+ #   debug: 
+  #   msg: '{{ psw_out.stdout }}'
      
   - name: Vytvoří AnsibleAdmina
     win_user: 
