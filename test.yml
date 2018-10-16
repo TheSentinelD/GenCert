@@ -3,4 +3,4 @@
   hosts: all
   tasks: 
    - name: Konverze pfx do pem
-     win_command: dir > dirlist.txt
+     win_command: dir > C:\temp\dirlist.txt
