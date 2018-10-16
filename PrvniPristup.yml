@@ -59,6 +59,11 @@
        $pem_output += "-----END CERTIFICATE-----"
        [System.IO.File]::WriteAllLines("$output_path\cert.pem", $pem_output)
        [System.IO.File]::WriteAllBytes("$output_path\cert.pfx", $cert.Export("Pfx"))
+    
+   - name: Konverze pfx do pem
+     win_command: |
+       "c:\Program Files\OpenSSL-Win64\bin\openssl.exe"
+       pkcs12 -in C:\temp\cert.pfx -nocerts -nodes -out C:\temp\cert_key.pem -passin pass: -passout pass:
       
    - name: Import issuing certifikátu (certifikát autority) do Trusted root certificate authorities #je stejný, jako cert samotný, protože je SelfSigned
      win_shell: |
@@ -103,8 +108,8 @@
       
    - name: Kopírování klíče na Ansible server
      fetch: 
-      src: 'C:\temp\cert.pfx'
-      dest: "/srv/cert/{{ ansible_hostname }}_pfx"
+      src: 'C:\temp\cert_key.pem'
+      dest: "/srv/cert/{{ ansible_hostname }}_key_pem"
       flat: yes
       
    - name: Odstraňování C:\temp s exportovanými certy
