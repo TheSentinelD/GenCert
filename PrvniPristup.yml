@@ -22,12 +22,12 @@
      
    - name: debug
      debug: 
-      msg: '{{ psw_out.stdout | replace('\n','') }}'
+      msg: "{{ psw_out.stdout | replace('\n','') }}"
      
    - name: Vytvoří AnsibleAdmina
      win_user: 
       name: AnsibleAdmin
-      password: '{{ psw_out.stdout | replace('\n','') }}'
+      password: "{{ psw_out.stdout | replace('\n','') }}"
       state: present
       groups: 
        - Administrators  
