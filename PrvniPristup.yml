@@ -22,12 +22,12 @@
      
    - name: debug
      debug: 
-      msg: '{{ psw_out.stdout_lines }}'
+      msg: '{{ psw_out.stdout | replace('\n','') }}'
      
    - name: Vytvoří AnsibleAdmina
      win_user: 
       name: AnsibleAdmin
-      password: '{{ psw_out.stdout_lines }}'
+      password: '{{ psw_out.stdout | replace('\n','') }}'
       state: present
       groups: 
        - Administrators  
@@ -76,7 +76,7 @@
    - name: Přiřazení certifikátu admin účtu
      win_shell: |
       $username = "AnsibleAdmin"
-      $password = ConvertTo-SecureString -String "{{ psw_out.stdout_lines }}" -AsPlainText -Force
+      $password = ConvertTo-SecureString -String "{{ psw_out.stdout | replace('\n','') }}" -AsPlainText -Force
       $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
       $thumbprint = (Get-ChildItem -Path cert:\LocalMachine\root | Where-Object { $_.Subject -eq "CN=$username" }).Thumbprint
       New-Item -Path WSMan:\localhost\ClientCertificate `
