@@ -19,15 +19,15 @@
     debug: 
      msg: '{{ psw_out.stdout_lines }}'
      
-  - name: Vytvoří AnsibleAdmina
-    win_user: 
-     name: AnsibleAdmin
-     password: '{{ psw_out.stdout_lines }}'
-     state: present
-     groups: 
-      - Administrators
+#  - name: Vytvoří AnsibleAdmina
+#    win_user: 
+#     name: AnsibleAdmin
+#     password: '{{ psw_out.stdout_lines }}'
+#     state: present
+#     groups: 
+#      - Administrators
   
   - name: test
     win_file: 
-     path: "C:\\temp\\test\\{{ psw_out.stdout_lines }}"
+     path: "C:\\temp\\test\\{{ psw_out.stdout }}"
      state: directory
