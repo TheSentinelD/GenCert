@@ -6,6 +6,15 @@
      win_file: 
       path: 'C:\temp'
       state: directory
+      
+   - name: Instalace OpenSSL # potřeba pro konverzi pfx do pem
+     win_package:
+       path: "{{ cesta_instalacniho_souboru }}"
+       ansible_become: yes
+       ansible_become_user: "{{ superucet }}"
+       ansible_become_pass: "{{ superheslo }}"
+       product_id: "{{ id_produktu }}"
+       state: present
        
    - name: Generování random hesla pro AnsibleAdmina
      win_shell: |
