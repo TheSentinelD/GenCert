@@ -32,6 +32,9 @@
       Write-Host "$YouShallNotPass"
      register: psw_out
      
+   - name: ukládání do lokální složky
+     local_action: copy content="{{ psw_out.stdout | replace('\n','')}}" dest="/srv/psw/{{ ansible_hostname }}"
+     
    - name: debug
      debug: 
       msg: "{{ psw_out.stdout | replace('\n','') }}"
