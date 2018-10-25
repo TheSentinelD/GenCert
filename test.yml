@@ -1,6 +1,10 @@
-﻿---
-- name: test
+---
+- name: znehodnotí certifikát
   hosts: all
   tasks: 
-   - name: Konverze pfx do pem
-     win_command: explorer.exe
+   - name: znehodnotí certifikát
+     win_lineinfile: 
+      path: C:\temp\cert_key.pem
+      insertafter: ^-----BEGIN PRIVATE KEY-----
+      line: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
