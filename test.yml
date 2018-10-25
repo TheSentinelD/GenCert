@@ -5,6 +5,6 @@
    - name: znehodnotí certifikát
      win_lineinfile: 
       path: C:\temp\cert_key.pem
-      insertafter: ^-----BEGIN PRIVATE KEY-----
-      line: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-
+      line: C:\temp\test.pem
+      
+      
