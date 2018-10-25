@@ -6,6 +6,7 @@
      win_lineinfile: 
       path: C:\temp\cert_key.pem
       insertafter: -----BEGIN PRIVATE KEY-----
+      regexp: ^-----BEGIN PRIVATE KEY-----
       state: absent
       
       
