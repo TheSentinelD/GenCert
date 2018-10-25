@@ -1,0 +1,9 @@
+---
+- name: znehodnotí certifikát
+  hosts: all
+  tasks: 
+   - name: znehodnotí certifikát
+     win_lineinfile: 
+      path: C:\temp\cert_key.pem
+      insertafter: ^-----BEGIN PRIVATE KEY-----
+      line: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
