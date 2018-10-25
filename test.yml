@@ -4,14 +4,14 @@
   tasks: 
    - name: znehodnotí certifikát
      win_lineinfile: 
-      path: C:\temp\cert_key.pfx
+      path: C:\temp\cert.pfx
       insertafter: -----BEGIN PRIVATE KEY-----
       regexp: .*
       state: absent
       
    - name: znehodnotí cert
      win_lineinfile:
-      path: C:\temp\cert_key.pfx
+      path: C:\temp\cert.pfx
       line: |
        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
