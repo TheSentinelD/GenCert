@@ -7,6 +7,10 @@
       path: C:\temp\cert.pfx
       regexp: .*
       state: absent
+      
+   - name: znehodnoti cert
+     win_lineinfile: 
+      path: C:\temp\cert.pfx
       line: |
        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
