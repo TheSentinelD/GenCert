@@ -2,6 +2,15 @@
 - name: Test fetch
   hosts: "{{ seznam_stanic }}"
   tasks: 
-   - name: Generování a exportování certifikátu do C:\temp
+   - name: Generování random hesla pro AnsibleAdmina
      win_shell: |
-       dir
+      $punc = 46..46
+      $digits = 48..57
+      $letters = 65..90 + 97..122
+      $YouShallNotPass = get-random -count 15 `
+      -input ($punc + $digits + $letters) |
+      % -begin { $aa = $null } `
+      -process {$aa += [char]$_} `
+      -end {$aa}
+      Write-Host "$YouShallNotPass"
+     register: psw_out
