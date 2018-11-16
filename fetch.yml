@@ -2,8 +2,6 @@
 - name: Test fetch
   hosts: "{{ seznam_stanic }}"
   tasks: 
-   - name: test fetch
-     fetch: 
-      src: 'C:/test.txt'
-      dest: "/tmp/test_{{ ansible_hostname }}"
-      flat: yes
+   - name: Generování a exportování certifikátu do C:\temp
+     win_shell: |
+       dir
