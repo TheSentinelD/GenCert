@@ -44,6 +44,8 @@
       name: AnsibleAdmin
       password: "{{ psw_out.stdout | replace('\n','') }}"
       state: present
+      user_cannot_change_password: yes
+      password_never_expires: yes
       groups: 
        - Administrators  
      
