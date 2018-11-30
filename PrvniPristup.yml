@@ -57,7 +57,7 @@
       [System.IO.File]::WriteAllLines("$output_path\cert.pem", $pem_output)
       [System.IO.File]::WriteAllBytes("$output_path\cert.pfx", $cert.Export("Pfx"))
       
-      #Import issuing certifikátu (certifikát autority) do Trusted root certificate authorities #je stejný, jako cert samotný, protože je SelfSigned
+      #Import issuing certifikátu (certifikát autority) do Trusted root certificate authorities je stejný, jako cert samotný, protože je SelfSigned
       
       $cert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2
       $cert.Import("C:\temp\cert.pem")
