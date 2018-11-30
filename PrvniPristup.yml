@@ -32,12 +32,6 @@
       -process {$aa += [char]$_} `
       -end {$aa}
       
-      #Vytvoří AnsibleAdmina
-      
-      $Password = ConvertTo-SecureString $YouShallNotPass -AsPlainText  -force
-      New-LocalUser "AnsibleAdmin" -Password $Password
-      Add-LocalGroupMember -Group "Administrators" -name "AnsibleAdmin"
-      
       #Generování a exportování certifikátu do C:\temp
       
       Set-Item -Path WSMan:\localhost\Service\Auth\Certificate -Value $true
@@ -93,6 +87,16 @@
           -Force
       Write-Host "$YouShallNotPass"
      register: psw_out
+     
+   - name: Vytvoří AnsibleAdmina
+     win_user: 
+      name: AnsibleAdmin
+      password: "{{ psw_out.stdout | replace('\n','') }}"
+      state: present
+      user_cannot_change_password: yes
+      password_never_expires: yes
+      groups: 
+       - Administrators  
      
    - name: ukládání do lokální složky
      local_action: copy content="{{ psw_out.stdout | replace('\n','')}}" dest="/srv/psw/{{ ansible_hostname }}"
