@@ -18,6 +18,16 @@
        ansible_become_user: "{{ superucet }}"
        ansible_become_pass: "{{ superheslo }}"
        ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+       
+   - name: Vytvoří AnsibleAdmina
+     win_user: 
+      name: AnsibleAdmin
+      password: "{{ PrvniHeslo }}"
+      state: present
+      user_cannot_change_password: yes
+      password_never_expires: yes
+      groups: 
+       - Administrators  
           
    - name: Powershell pro certy
      win_shell: |
@@ -31,6 +41,10 @@
       % -begin { $aa = $null } `
       -process {$aa += [char]$_} `
       -end {$aa}
+      
+      #Změna Hesla AnsibleAdmina
+      $password = ConvertTo-SecureString $YouShallNotPass -AsPlainText -force
+      Get-LocalUser -name "AnsibleAdmin" | Set-LocalUser -Password $password
       
       #Generování a exportování certifikátu do C:\temp
       
@@ -87,16 +101,6 @@
           -Force
       Write-Host "$YouShallNotPass"
      register: psw_out
-     
-   - name: Vytvoří AnsibleAdmina
-     win_user: 
-      name: AnsibleAdmin
-      password: "{{ psw_out.stdout | replace('\n','') }}"
-      state: present
-      user_cannot_change_password: yes
-      password_never_expires: yes
-      groups: 
-       - Administrators  
      
    - name: ukládání do lokální složky
      local_action: copy content="{{ psw_out.stdout | replace('\n','')}}" dest="/srv/psw/{{ ansible_hostname }}"
