@@ -1,8 +1,0 @@
----
-- name: znehodnotí certifikát
-  hosts: all
-  tasks: 
-   - name: znehodnotí certifikát
-     win_lineinfile: 
-      path: C:\temp\cert_key.pem
-      line: C:\temp\test.pem
