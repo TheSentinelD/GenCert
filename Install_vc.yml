@@ -1,0 +1,13 @@
+---
+- name: Instalace vicual c
+  hosts: "{{ seznam_stanic }}"
+  tasks: 
+  - name: Instalace visual c z lokálního storage
+    win_command: \\storage.ccv.cz\Instalator\vc_redist.x64.exe /passive /norestart /install
+    vars: 
+       ansible_become: yes
+       ansible_become_method: runas
+       ansible_become_user: "{{ superucet }}"
+       ansible_become_pass: "{{ superheslo }}"
+       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+       
