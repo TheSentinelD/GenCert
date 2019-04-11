@@ -29,6 +29,7 @@
       $password = ConvertTo-SecureString $YouShallNotPass -AsPlainText -force
       Get-LocalUser -name "AnsibleAdmin" | Set-LocalUser -Password $password
      ignore_errors: yes
+     register: psw_out
      
    - name: debug
      debug: 
