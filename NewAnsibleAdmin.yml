@@ -2,7 +2,7 @@
 - name: Vytvoří AnsibleAdmina
   hosts: "{{ seznam_stanic }}"
   tasks: 
-  - name: Vytvoří AnsibleAdmina
+   - name: Vytvoří AnsibleAdmina
      win_user: 
       name: AnsibleAdmin
       password: "{{ PrvniHeslo }}"
@@ -30,9 +30,9 @@
       Get-LocalUser -name "AnsibleAdmin" | Set-LocalUser -Password $password
      ignore_errors: yes
      
-  - name: debug
-    debug: 
-     msg: '{{ psw_out.stdout | replace('\n','')}}'
+   - name: debug
+     debug: 
+      msg: '{{ psw_out.stdout | replace('\n','')}}'
      
 #  - name: Vytvoří AnsibleAdmina
 #    win_user: 
