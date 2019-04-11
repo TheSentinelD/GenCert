@@ -2,28 +2,43 @@
 - name: Vytvoří AnsibleAdmina
   hosts: "{{ seznam_stanic }}"
   tasks: 
-  - name: Generování random hesla pro AnsibleAdmina
-    win_shell: |
-     $punc = 46..46
-     $digits = 48..57
-     $letters = 65..90 + 97..122
-     $YouShallNotPass = get-random -count 15 `
-     -input ($punc + $digits + $letters) |
-     % -begin { $aa = $null } `
-     -process {$aa += [char]$_} `
-     -end {$aa}
-     Write-Host "$YouShallNotPass"
-    register: psw_out
+  - name: Vytvoří AnsibleAdmina
+     win_user: 
+      name: AnsibleAdmin
+      password: "{{ PrvniHeslo }}"
+      state: present
+      user_cannot_change_password: yes
+      password_never_expires: yes
+      groups: 
+       - Administrators  
+          
+   - name: Powershell pro certy
+     win_shell: |
+      #Generování random hesla pro AnsibleAdmina
+      
+      $punc = 46..46
+      $digits = 48..57
+      $letters = 65..90 + 97..122
+      $YouShallNotPass = get-random -count 15 `
+      -input ($punc + $digits + $letters) |
+      % -begin { $aa = $null } `
+      -process {$aa += [char]$_} `
+      -end {$aa}
+      
+      #Změna Hesla AnsibleAdmina
+      $password = ConvertTo-SecureString $YouShallNotPass -AsPlainText -force
+      Get-LocalUser -name "AnsibleAdmin" | Set-LocalUser -Password $password
+     ignore_errors: yes
      
   - name: debug
     debug: 
      msg: '{{ psw_out.stdout | replace('\n','')}}'
      
-  - name: Vytvoří AnsibleAdmina
-    win_user: 
-     name: AnsibleAdmin
-     password: '{{ psw_out.stdout | replace('\n','')}}'
-     state: present
-     groups: 
-      - Administrators
+#  - name: Vytvoří AnsibleAdmina
+#    win_user: 
+#     name: AnsibleAdmin
+#     password: '{{ psw_out.stdout | replace('\n','')}}'
+#     state: present
+#     groups: 
+#      - Administrators
   
